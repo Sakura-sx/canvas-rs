@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vibing's Canvas Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #030711;
+        --surface-color: #0f172a;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --accent-color: #3b82f6;
+        --success-color: #22c55e;
+        --error-color: #ef4444;
+        --warning-color: #eab308;
+        --glass-bg: rgba(15, 23, 42, 0.7);
+        --border-color: rgba(148, 163, 184, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      }
+
+      body {
+        background: var(--bg-color);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(
+            circle at 0% 0%,
+            rgba(59, 130, 246, 0.1),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 100% 0%,
+            rgba(34, 197, 94, 0.1),
+            transparent 70%
+          ),
+          radial-gradient(
+            circle at 50% 100%,
+            rgba(234, 179, 8, 0.1),
+            transparent 70%
+          ),
+          radial-gradient(
+            circle at 100% 100%,
+            rgba(239, 68, 68, 0.1),
+            transparent 70%
+          ),
+          radial-gradient(
+            circle at 0% 100%,
+            rgba(255, 105, 180, 0.1),
+            transparent 70%
+          );
+        background-size: 200% 200%;
+        animation: rainbowGradient 8s ease infinite;
+      }
+
+      @keyframes rainbowGradient {
+        0% {
+          background-position:
+            0% 0%,
+            70% 0%,
+            50% 50%,
+            70% 50%,
+            0% 50%;
+        }
+        50% {
+          background-position:
+            70% 0%,
+            50% 50%,
+            0% 0%,
+            0% 50%,
+            70% 50%;
+        }
+        100% {
+          background-position:
+            0% 0%,
+            70% 0%,
+            50% 50%,
+            70% 50%,
+            0% 50%;
+        }
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .back-link {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.2s ease;
+      }
+
+      .back-link:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-1px);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--text-primary);
+        margin: 1.5rem 0 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1rem;
+        margin-top: 3rem;
+      }
+
+      .endpoint {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border: 1px solid var(--border-color);
+      }
+
+      .method {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+
+      .get {
+        background: var(--success-color);
+      }
+      .post {
+        background: var(--accent-color);
+      }
+
+      .url-path {
+        color: var(--accent-color);
+        font-family: monospace;
+        font-size: 1.1em;
+      }
+
+      pre {
+        background: var(--surface-color);
+        padding: 1rem;
+        border-radius: 0.75rem;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+      }
+
+      code {
+        font-family: monospace;
+        color: var(--accent-color);
+      }
+
+      ul {
+        list-style-type: none;
+        padding-left: 1rem;
+      }
+
+      ul li {
+        margin: 0.5rem 0;
+        color: var(--text-secondary);
+      }
+
+      .footer {
+        margin-top: 3rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        color: var(--text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+
+        .back-link {
+          position: static;
+          display: inline-block;
+          margin-bottom: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background"></div>
+    <div class="container">
+      <a href="/" class="back-link">← Back to Canvas</a>
+      <h1>canvas-rs docs</h1>
+
+      <div class="general-info">
+        <h2>General Information</h2>
+        <p>
+          We have a silly pixel canvas, you can watch it in real-time or place
+          pixels by yourself
+        </p>
+        <ul>
+          <li>Base URL: <code id="base-url">https://localhost:9999</code></li>
+          <script>
+            const baseUrl = window.location.origin;
+            document.getElementById("base-url").textContent = baseUrl;
+          </script>
+          <li>Currently ratelimiting is disabled</li>
+          <li>The canvas is currently 1024x1024</li>
+        </ul>
+      </div>
+
+      <h2>Endpoints</h2>
+
+      <div class="endpoint">
+        <h3>1. Get Pixel</h3>
+        <p>
+          <span class="method get">GET</span>
+          <span class="url-path">/getPixel</span>
+        </p>
+        <p>Retrieves the color of a specific pixel on the canvas.</p>
+
+        <h4>Query Parameters:</h4>
+        <ul>
+          <li><code>x</code> (required): The x-coordinate of the pixel.</li>
+          <li><code>y</code> (required): The y-coordinate of the pixel.</li>
+        </ul>
+
+        <h4>Response:</h4>
+        <ul>
+          <li>
+            <strong>Success (200 OK):</strong> JSON object containing the RGB
+            values of the pixel.
+            <pre>
+{
+    "r": 255,
+    "g": 0,
+    "b": 0
+}</pre
+            >
+          </li>
+          <li>
+            <strong>Error (400 Bad Request):</strong> Invalid coordinates.
+          </li>
+        </ul>
+      </div>
+
+      <div class="endpoint">
+        <h3>2. Update Pixel</h3>
+        <p>
+          <span class="method post">POST</span>
+          <span class="url-path">/updatePixel</span>
+        </p>
+        <p>Updates the color of a specific pixel on the canvas.</p>
+
+        <h4>Request Body:</h4>
+        <p>JSON object containing the pixel coordinates and new RGB values.</p>
+        <pre>
+{
+    "x": 100,
+    "y": 100,
+    "r": 255,
+    "g": 0,
+    "b": 0
+}</pre
+        >
+
+        <h4>Response:</h4>
+        <ul>
+          <li>
+            <strong>Success (200 OK):</strong> Pixel updated successfully.
+          </li>
+          <li>
+            <strong>Error (400 Bad Request):</strong> Invalid coordinates or
+            malformed JSON.
+          </li>
+        </ul>
+      </div>
+
+      <div class="endpoint">
+        <h3>3. Data Stream Websocket</h3>
+        <p>
+          <span class="method get">GET</span>
+          <span class="url-path">/ws/stream</span>
+        </p>
+        <p>
+          Establishes a WebSocket connection for real-time canvas updates and
+          interaction.
+        </p>
+
+        <h4>Data Format:</h4>
+        <ul>
+          <li>
+            <strong>Message Type</strong> (1 byte): <code>0x01</code> (Canvas
+            Data).
+          </li>
+          <li>
+            <strong>Number of Pixels</strong> (2 bytes, Big Endian): Unsigned
+            16-bit integer indicating the number of pixels in this message.
+          </li>
+          <li>
+            <strong>Pixel Data</strong> (Variable Length): A sequence of 7-byte
+            chunks, each representing a single pixel:
+            <ul>
+              <li>
+                <strong>X Coordinate</strong> (2 bytes, Big Endian): Unsigned
+                16-bit integer.
+              </li>
+              <li>
+                <strong>Y Coordinate</strong> (2 bytes, Big Endian): Unsigned
+                16-bit integer.
+              </li>
+              <li>
+                <strong>Red</strong> (1 byte): Unsigned 8-bit integer (0-255).
+              </li>
+              <li>
+                <strong>Green</strong> (1 byte): Unsigned 8-bit integer (0-255).
+              </li>
+              <li>
+                <strong>Blue</strong> (1 byte): Unsigned 8-bit integer (0-255).
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          Upon first connection to the websocket the entire canvas is sent in
+          chunks of 5000 pixels. <br />Data is chunked and sent in batches every
+          30 miliseconds. <br /><a
+            href="https://gist.github.com/nullsoepic/d9182f84b22c6224915c3c32064afdeb"
+            >Example code is available.</a
+          >
+        </p>
+      </div>
+
+      <div class="endpoint">
+        <h3>4. Drawing Websocket</h3>
+        <p>
+          <span class="method get">GET</span>
+          <span class="url-path">/ws/draw</span>
+        </p>
+        <p>
+          Establishes a WebSocket connection for updating pixels on the canvas.
+        </p>
+
+        <h4>Data Format:</h4>
+        <ul>
+          <li>
+            <strong>Request:</strong> JSON object containing the pixel
+            coordinates and new RGB values.
+            <pre>
+{
+    "x": 100,
+    "y": 100,
+    "r": 255,
+    "g": 0,
+    "b": 0
+}</pre
+            >
+          </li>
+          <li>
+            <strong>Response:</strong> Text message indicating the result of the
+            operation.
+            <ul>
+              <li><code>ok</code>: Pixel updated successfully.</li>
+              <li><code>err</code>: Error occurred during the operation.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p>canvas-rs v1.0.0</p>
+        <p>Original protocol made with ☕ by Vibing | @mevibing on discord</p>
+        <p>Written in 🦀 with ❤️ by vitamin | @vt_d on discord</p>
+        <p>UI by ChatGPT.</p>
+      </div>
+    </div>
+  </body>
+</html>
