@@ -23,7 +23,7 @@ The canvas provides both REST endpoints and WebSocket connections for interactio
 
 Run the following after opening a shell in the directory:
 ```sh
-cargo run
+RUSTFLAGS="-C target-cpu=native" cargo run --release
 ```
 
 Run the site
