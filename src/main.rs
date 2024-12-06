@@ -69,7 +69,7 @@ async fn main() {
         .layer(Extension(state.clone()))
         .layer(CorsLayer::permissive());
 
-    println!("Server running on http://0.0.0.0:8000");
+    println!("Server running on http://0.0.0.0:3000");
 
     let server =
         axum::Server::bind(&"0.0.0.0:3000".parse().unwrap()).serve(app.into_make_service());
