@@ -4,10 +4,11 @@ mod persistance;
 mod state;
 mod types;
 mod websocket;
+mod pow;
 
 use crate::{
     constants::BROADCAST_CHANNEL_SIZE,
-    handlers::{get_pixel, update_pixel},
+    handlers::{get_pixel, update_red, update_green, update_blue, get_difficulty}, // Updated handlers
     persistance::save_canvas,
     state::{init_canvas, AppState},
     websocket::{cws_handler, ws_handler},
@@ -61,7 +62,10 @@ async fn main() {
 
     let app = Router::new()
         .route("/getPixel", get(get_pixel))
-        .route("/updatePixel", post(update_pixel))
+        .route("/updatePixel/r", post(update_red))
+        .route("/updatePixel/g", post(update_green))
+        .route("/updatePixel/b", post(update_blue))
+        .route("/getDifficulty", get(get_difficulty))
         .route("/ws/stream", get(ws_handler))
         .route("/ws/draw", get(cws_handler))
         .nest_service("/", serve_dir.clone())

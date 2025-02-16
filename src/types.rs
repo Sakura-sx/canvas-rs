@@ -20,3 +20,17 @@ pub struct PixelQuery {
     pub x: u16,
     pub y: u16,
 }
+
+#[derive(Debug, Deserialize)]
+pub struct PixelComponentUpdate {
+    pub x: u16,
+    pub y: u16,
+    pub value: u8,
+    pub salt: u64,
+    pub hash: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct DifficultyResponse {
+    pub difficulty: u64,
+}
